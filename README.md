@@ -104,12 +104,52 @@ Optional — compile the CroCo RoPE CUDA kernel for a speedup (works without it)
 cd croco/models/curope && python setup.py build_ext --inplace && cd ../../..
 ```
 
-### Pretrained DUSt3R backbone (required)
+### Checkpoints
+
+`checkpoints/` is gitignored — weights are not in this repo. On the lab machine
+they can be copied straight from the shared directory:
 
 ```bash
+export SHARED=/tmp2/b12902145/dust3r/checkpoints
 mkdir -p checkpoints
+```
+
+**1. DUSt3R backbone — required for everything** (2.2 GB)
+
+```bash
+cp $SHARED/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth checkpoints/
+```
+
+Or download it from upstream:
+
+```bash
 wget -P checkpoints https://download.europe.naverlabs.com/ComputerVision/DUSt3R/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth
 ```
+
+**2. Trained SemCom models — optional**, only if you want to evaluate rather
+than train from scratch. Each is ~6.4 GB (2.3 GB of weights + optimizer state),
+so copy just the ones you need:
+
+```bash
+cp -r $SHARED/e2eA_awgn_snr0-20_r0.125 checkpoints/     # Arch A, k/1024 = 0.125
+cp -r $SHARED/e2eB_awgn_snr0-20_c8     checkpoints/     # Arch B, budget-matched
+```
+
+| Arch A (`--domain feature`) | ratio `k/1024` | Arch B (`--domain image`) | ratio `c_out/48` |
+|---|---|---|---|
+| `e2eA_awgn_snr0-20_r0.5`    | 0.5    | `e2eB_awgn_snr0-20_c24` | 0.500 |
+| `e2eA_awgn_snr0-20_r0.25`   | 0.25   | `e2eB_awgn_snr0-20_c12` | 0.250 |
+| `e2eA_awgn_snr0-20_r0.125`  | 0.125  | `e2eB_awgn_snr0-20_c8`  | 0.167 |
+| `e2eA_awgn_snr0-20_r0.083`  | 0.083  | `e2eB_awgn_snr0-20_c6`  | 0.125 |
+| `e2eA_awgn_snr0-20_r0.0625` | 0.0625 | `e2eB_awgn_snr0-20_c4`  | 0.083 |
+| `e2eA_awgn_snr0-20_identity`| 1.0 (noise only, no codec) | `e2eB_awgn_snr0-20_c{1,2,3,48}` | 0.021 … 1.0 |
+
+All were trained on BlendedMVS for 20–50 epochs with the SNR sampled uniformly
+in [0, 20] dB, so a single checkpoint can be evaluated at any SNR — pass
+`--snr` at eval time and it overrides whatever the checkpoint was trained at.
+
+Pairs on the same row are **budget-matched** (`c_out = k/16`), which is the
+comparison the two architectures are meant to be read against.
 
 ### Datasets
 
