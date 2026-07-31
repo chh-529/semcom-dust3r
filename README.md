@@ -106,33 +106,23 @@ cd croco/models/curope && python setup.py build_ext --inplace && cd ../../..
 
 ### Checkpoints
 
-`checkpoints/` is gitignored — weights are not in this repo. On the lab machine
-they can be copied straight from the shared directory:
-
-```bash
-export SHARED=/tmp2/b12902145/dust3r/checkpoints
-mkdir -p checkpoints
-```
+`checkpoints/` is gitignored — no weights are stored in this repo.
 
 **1. DUSt3R backbone — required for everything** (2.2 GB)
 
 ```bash
-cp $SHARED/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth checkpoints/
-```
-
-Or download it from upstream:
-
-```bash
+mkdir -p checkpoints
 wget -P checkpoints https://download.europe.naverlabs.com/ComputerVision/DUSt3R/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth
 ```
 
 **2. Trained SemCom models — optional**, only if you want to evaluate rather
-than train from scratch. Each is ~6.4 GB (2.3 GB of weights + optimizer state),
-so copy just the ones you need:
+than train from scratch. Each is ~6.4 GB (2.3 GB of weights + optimizer state).
+These are not publicly hosted; ask the author for a copy, or train your own with
+`train_e2e.py` (see Quick start below). The naming convention is:
 
-```bash
-cp -r $SHARED/e2eA_awgn_snr0-20_r0.125 checkpoints/     # Arch A, k/1024 = 0.125
-cp -r $SHARED/e2eB_awgn_snr0-20_c8     checkpoints/     # Arch B, budget-matched
+```
+checkpoints/e2eA_awgn_snr0-20_r<ratio>/checkpoint-last.pth     # Arch A
+checkpoints/e2eB_awgn_snr0-20_c<c_out>/checkpoint-last.pth     # Arch B
 ```
 
 | Arch A (`--domain feature`) | ratio `k/1024` | Arch B (`--domain image`) | ratio `c_out/48` |

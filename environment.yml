@@ -331,4 +331,3 @@ dependencies:
       - werkzeug==3.1.8
       - widgetsnbextension==4.0.15
       - zipp==4.1.0
-prefix: /home/ldap/cshsieh/miniconda3/envs/dust3r

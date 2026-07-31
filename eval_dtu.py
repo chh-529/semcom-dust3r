@@ -25,9 +25,9 @@ Usage
 # Clean DUSt3R upper bound (no channel), a few scans:
 python eval_dtu.py \
     --weights checkpoints/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth \
-    --dtu_test  /tmp2/b12902145/dataset/dtu/dtu-test \
-    --gt_dir    /tmp2/b12902145/dataset/dtu \
-    --dtueval   /tmp2/b12902145/dataset/DTUeval-python \
+    --dtu_test  /path/to/dtu/dtu-test \
+    --gt_dir    /path/to/dtu \
+    --dtueval   /path/to/DTUeval-python \
     --snr inf --scans 1 4 9 --n_views 15 \
     --output results/dtu_clean.json
 
