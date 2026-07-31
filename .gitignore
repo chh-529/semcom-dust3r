@@ -1,0 +1,27 @@
+# Datasets and trained weights — never commit
+data/
+checkpoints/
+
+# Generated experiment outputs (regenerable from code + checkpoints)
+results/
+figures/
+logs/
+
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*.so
+
+# CroCo RoPE CUDA extension build artifacts
+croco/models/curope/build/
+
+# Environments / editors
+.venv/
+venv/
+.env
+.idea/
+.vscode/
+.claude/
+
+# Gradio
+.gradio/
