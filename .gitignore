@@ -25,3 +25,11 @@ venv/
 
 # Gradio
 .gradio/
+
+outputs/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+__pycache__/
+*.pyc
