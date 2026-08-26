@@ -1,0 +1,3 @@
+[submodule "third_party/semcom"]
+	path = third_party/semcom
+	url = https://github.com/chh-529/semcom.git
