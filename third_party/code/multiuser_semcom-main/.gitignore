@@ -1,0 +1,8 @@
+cifar-10-batches-py/
+data
+**/__pycache__
+**/*.ansi
+checkpoint
+tmp
+.vscode
+.github

@@ -1,0 +1,25 @@
+{
+    "save_dir": "checkpoint/20251106",
+    "task": "ave",
+    "dataset": {
+        "name": "ave"
+    },
+    "seed": 1000,
+    "gpu": [1],
+    "epochs": 150,
+    "batch_size": 50,
+    "channel": {
+        "channel_type": "awgn",
+        "interfere_mode": "all",
+        "fading_mode": "slow",
+        "power": 1,
+        "snr_db": 12,
+        "scheme": "nosic"
+    },
+    "model":{
+        "encoder_out_dims": 48,
+        "encoder_out_dims_OMA": 24
+    },
+    "model_type":"udeepsc_ave",
+    "n_models": 3
+}
