@@ -1,0 +1,23 @@
+{
+  "cp_main_folder": "checkpoint/20251105",
+  "shap_file_path": "tmp/20251105/msa/kernel_shap_3000_features",
+  "result_dir": "tmp/20251105",
+  "task": "msa",
+  "seed": 2001,
+  "gpu": [1],
+  "model_info": {
+    "channel_type": "awgn",
+    "snr_db": 12,
+    "model_type": "udeepsc_msa",
+    "dataset_type": "cmu-mosei",
+    "encoder_out_dims": 48,
+    "encoder_out_dims_OMA": 16
+  },
+  "model_nums": {
+    "nosic": 5,
+    "sic": 5,
+    "oma": 5
+  },
+  "modalities": ["text", "image", "speech"],
+  "uplinkMethod": "features"
+}

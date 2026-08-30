@@ -1,0 +1,22 @@
+{
+  "cp_main_folder": "checkpoint/20251106",
+  "shap_file_path": "tmp/20251105/ave/kernel_shap_3000_features",
+  "result_dir": "tmp/20251106",
+  "task": "ave",
+  "gpu": [1],
+  "model_info": {
+    "channel_type": "awgn",
+    "snr_db": 12,
+    "model_type": "udeepsc_ave",
+    "dataset_type": "ave",
+    "encoder_out_dims": 48,
+    "encoder_out_dims_OMA": 24
+  },
+  "model_nums": {
+    "nosic": 3,
+    "sic": 3,
+    "oma": 3
+  },
+  "modalities": ["image", "speech"],
+  "uplinkMethod": "features"
+}
